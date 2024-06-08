@@ -3,7 +3,7 @@ from sqlmodel import SQLModel
 from typing import List, Optional
 
 
-DATBASE_KEY = 'postgresql://neondb_owner:LAYBh2ETrNs0@ep-shrill-shadow-a1dtu58s.ap-southeast-1.aws.neon.tech/friday-db?sslmode=require'
+
 
 app = FastAPI()
 
