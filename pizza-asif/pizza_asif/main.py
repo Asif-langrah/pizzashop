@@ -1,21 +1,34 @@
 from fastapi import FastAPI, HTTPException
-from sqlmodel import SQLModel 
+from sqlmodel import SQLModel, create_engine
 from typing import List, Optional
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+DATABASE_KEY = os.getenv("DATABASE_KEY")
 
 
-
-
-app = FastAPI()
-
-   # Define a Pizza model
-class Pizza(SQLModel):
+# Define a Pizza model
+class Pizza(SQLModel, table=True):
        id: int
        name: str
        ingredients: List[str]
        price: float
+       
+    
+
+
+engine = create_engine(DATABASE_KEY, echo=True) 
+SQLModel.metadata.create_all(engine)
+
+
 
    # In-memory database (for demonstration purposes)
 pizzas = []
+
+
+app = FastAPI()
+
 
    # Get all pizzas
 @app.get("/pizzas", response_model=List[Pizza])

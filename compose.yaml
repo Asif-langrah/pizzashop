@@ -1,0 +1,10 @@
+name: pizza_asif
+services:
+  api:
+    build:
+      context: ./pizza-asif
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./pizza-asif:/code  # Sync local development directory with the container
+    ports:
+      - "8000:8000"  # Expose container port 8000 to host port 8000 
